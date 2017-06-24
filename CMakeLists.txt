@@ -15,7 +15,6 @@ FILE(GLOB BOOST_SRC
   libs/serialization/src/*.cpp
   libs/thread/src/*.cpp
   libs/coroutine/src/*.cpp
-  libs/context/src/windows/*.cpp
   libs/iostreams/src/zlib.cpp
   libs/iostreams/src/file_descriptor.cpp
   libs/program_options/src/*.cpp
@@ -34,8 +33,12 @@ IF(WIN32)
   FILE(GLOB BOOST_THREAD_SRC
     libs/thread/src/win32/*.cpp
   )
+  FILE(GLOB BOOST_CONTEXT_SRC
+    libs/context/src/windows/*.cpp
+  )
   list(APPEND BOOST_SRC
     ${BOOST_THREAD_SRC}
+    # ${BOOST_CONTEXT_SRC}
   )
 ELSE()
   add_definitions(
@@ -44,8 +47,12 @@ ELSE()
   FILE(GLOB BOOST_THREAD_SRC
     libs/thread/src/pthread/*.cpp
   )
+  FILE(GLOB BOOST_CONTEXT_SRC
+    libs/context/src/posix/*.cpp
+  )
   list(APPEND BOOST_SRC
     ${BOOST_THREAD_SRC}
+    # ${BOOST_CONTEXT_SRC}
   )
 ENDIF()
 
